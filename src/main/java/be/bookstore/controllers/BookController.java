@@ -1,6 +1,6 @@
 package be.bookstore.controllers;
 
-import be.bookstore.entities.Book;
+import be.bookstore.dtos.BookResponse;
 import be.bookstore.services.BookService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,25 +23,25 @@ public class BookController {
 
     @GetMapping("/{id}")
     @ResponseStatus(code = HttpStatus.OK)
-    public Book findById(@PathVariable Long id) {
+    public BookResponse findById(@PathVariable Long id) {
         return this.bookService.findById(id);
     }
 
     @GetMapping
     @ResponseStatus(code = HttpStatus.OK)
-    public Page<Book> findAll(Pageable pageable) {
+    public Page<BookResponse> findAll(Pageable pageable) {
         return this.bookService.findAll(pageable);
     }
 
     @GetMapping("/list")
     @ResponseStatus(code = HttpStatus.OK)
-    public List<Book> findAll(Sort sort) {
+    public List<BookResponse> findAll(Sort sort) {
         return this.bookService.findAll(sort);
     }
 
     @GetMapping("/search")
     @ResponseStatus(code = HttpStatus.OK)
-    public Page<Book> findAllByTitleOrAuthor(String query, Pageable pageable) {
+    public Page<BookResponse> findAllByTitleOrAuthor(String query, Pageable pageable) {
         return this.bookService.findAllByTitleOrAuthor(query, pageable);
     }
 }
